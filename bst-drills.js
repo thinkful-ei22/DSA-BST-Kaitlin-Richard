@@ -6,6 +6,7 @@ const BinarySearchTree = require('./bst-class');
 const BST = new BinarySearchTree;
 
 BST.insert(3);
+// BST.insert(100);
 BST.insert(1);
 BST.insert(4);
 BST.insert(6);
@@ -14,8 +15,9 @@ BST.insert(2);
 BST.insert(5);
 BST.insert(7);
 
-boolBST(BST);
-console.log(boolBST(BST));
+// boolBST(BST);
+// console.log(boolBST(BST));
+thirdBiggestNode(BST);
 // console.log(BST);
 // }
 
@@ -108,3 +110,37 @@ const testMaxMin = (bst) => {
 
   // return height;
 };
+
+// input 
+
+// Write an algorithm to find the third largest node in a binary search tree
+// go to biggest (all the way right)
+// check if left - if not, go back until there is a left (x3)
+
+function thirdBiggestNode (bst, count=0) {  
+  // we've gone back 3 times from the biggest node
+  if (count === 3) {
+    // return bst.key;
+    console.log('Reached 3')
+  }
+
+  if (bst) {
+    let maxNode = _findMax(bst);
+    console.log('biggest node', maxNode.key);
+    console.log('count is', count);
+    let secondBiggestNode = thirdBiggestNode(maxNode.left, count+1);
+    // console.log('second biggest', maxNode.parent.key);
+
+  } else {
+    console.log('something -----');
+    // return;
+  }
+
+}
+
+function _findMax(bst) {
+  if (!bst.right) {
+    return bst;
+  }
+  return _findMax(bst.right);
+}
