@@ -6,9 +6,6 @@ const BinarySearchTree = require('./bst-class');
 const BST = new BinarySearchTree;
 
 BST.insert(3);
-BST.insert(20);
-BST.insert(10);
-BST.insert(15);
 BST.insert(1);
 BST.insert(4);
 BST.insert(6);
@@ -17,7 +14,8 @@ BST.insert(2);
 BST.insert(5);
 BST.insert(7);
 
-
+boolBST(BST);
+console.log(boolBST(BST));
 // console.log(BST);
 // }
 
@@ -41,7 +39,41 @@ const BSTHeight = (bst) => {
   
 };
 
-console.log(BSTHeight(BST));
+function boolBST(bst) {
+  // let right = !boolBST(bst.right);
+  // let left = !boolBST(bst.left);
+
+  console.log('------', bst.key, '---------');
+  // console.log('left --- ', left);
+  // console.log('right --- ', right);
+  // console.log('right bool --- ', bst.right ? right.key: 'nada');
+  // console.log('left bool --- ', bst.left ? left.key: 'nada');
+  
+  if (!bst.left && !bst.right) {
+    return true;
+  }
+  if (bst.left) {
+    if (bst.key < bst.left.key) {
+      return false;
+    }
+    if(!boolBST(bst.left)) {
+      return false;
+    }
+  }
+
+  if (bst.right) {
+    if (bst.key > bst.right.key) {
+      return false;
+    }
+    if (!boolBST(bst.right)) {
+      return false;
+    }
+  }
+  
+  return true;
+
+  // return right.key < bst.key && left.key > bst.key && right && left;
+}
 
 const testMaxMin = (bst) => {
 
