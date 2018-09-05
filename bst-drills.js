@@ -6,18 +6,18 @@ const BinarySearchTree = require('./bst-class');
 const BST = new BinarySearchTree;
 
 BST.insert(3);
-BST.insert(100);
+// BST.insert(100);
 BST.insert(1);
 BST.insert(4);
 BST.insert(6);
 BST.insert(9);
 BST.insert(2);
 BST.insert(5);
-BST.insert(7);
+// BST.insert(7);
 
 // boolBST(BST);
 // console.log(boolBST(BST));
-console.log(thirdBiggestNode(BST));
+console.log(isBalanced(BST));
 // console.log(BST);
 // }
 
@@ -145,3 +145,16 @@ function thirdBiggestNode (bst, array=[]) {
   // console.log(array[array.length-3]);
   return array[(array.length-3)];
 }
+
+function isBalanced(bst) {
+
+  if (!bst) {
+    return 0;
+  }
+
+  let rightHeight = isBalanced(bst.right);
+  let leftHeight = isBalanced(bst.left);
+
+  return (Math.abs(leftHeight - rightHeight) <= 0);
+  
+};
