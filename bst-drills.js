@@ -6,7 +6,7 @@ const BinarySearchTree = require('./bst-class');
 const BST = new BinarySearchTree;
 
 BST.insert(3);
-// BST.insert(100);
+BST.insert(100);
 BST.insert(1);
 BST.insert(4);
 BST.insert(6);
@@ -17,7 +17,7 @@ BST.insert(7);
 
 // boolBST(BST);
 // console.log(boolBST(BST));
-thirdBiggestNode(BST);
+console.log(thirdBiggestNode(BST));
 // console.log(BST);
 // }
 
@@ -117,30 +117,31 @@ const testMaxMin = (bst) => {
 // go to biggest (all the way right)
 // check if left - if not, go back until there is a left (x3)
 
-function thirdBiggestNode (bst, count=0) {  
-  // we've gone back 3 times from the biggest node
-  if (count === 3) {
-    // return bst.key;
-    console.log('Reached 3')
-  }
+function thirdBiggestNode (bst, array=[]) {  
+  // // we've gone back 3 times from the biggest node
+  // if (count === 3) {
+  //   // return bst.key;
+  //   console.log('Reached 3');
+  // }
 
+  // if (bst.left) {
+  //   let maxNode = _findMax(bst);
+  //   console.log('biggest node', maxNode.key);
+  //   console.log('count is', count);
+  //   let secondBiggestNode = thirdBiggestNode(maxNode.left, count+1);
+  //   // console.log('second biggest', maxNode.parent.key);
+
+  // } else {
+  //   console.log('else case ----');
+  //   thirdBiggestNode(bst.parent, count+1);
+  // }
   if (bst) {
-    let maxNode = _findMax(bst);
-    console.log('biggest node', maxNode.key);
-    console.log('count is', count);
-    let secondBiggestNode = thirdBiggestNode(maxNode.left, count+1);
-    // console.log('second biggest', maxNode.parent.key);
-
-  } else {
-    console.log('something -----');
-    // return;
+    // console.log('key ----- ', bst.key); 
+    thirdBiggestNode(bst.left, array);
+    array.push(bst.key);
+    thirdBiggestNode(bst.right, array);
   }
 
-}
-
-function _findMax(bst) {
-  if (!bst.right) {
-    return bst;
-  }
-  return _findMax(bst.right);
+  // console.log(array[array.length-3]);
+  return array[(array.length-3)];
 }
